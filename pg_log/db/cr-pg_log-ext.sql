@@ -36,7 +36,7 @@ CREATE EXTERNAL WEB TABLE :scratch_schema.:segment_extl_pg_log_table (
     logline integer,
     logstack text
 ) EXECUTE :log_file
-ON ALL FORMAT 'csv' (delimiter E',' null E'' escape E'"' quote E'"') ENCODING 'UTF8';
+ON 13 FORMAT 'csv' (delimiter E',' null E'' escape E'"' quote E'"') ENCODING 'UTF8';
 -- ALTER TABLE :scratch_schema.:segment_extl_pg_log_table owner to :scratch_owner;
 
 
@@ -78,7 +78,7 @@ ON MASTER FORMAT 'csv' (delimiter E',' null E'' escape E'"' quote E'"') ENCODING
 
 
 DROP TABLE if exists :scratch_schema.:persistent_pg_log_table;
-CREATE TABLE :scratch_schema.:persistent_pg_log_table (like :scratch_schema.:master_extl_pg_log_table) with (appendonly=true, compresstype=quicklz) distributed randomly;
+CREATE TABLE :scratch_schema.:persistent_pg_log_table (like :scratch_schema.:master_extl_pg_log_table) with (appendonly=true, compresstype=snappy) distributed randomly;
 ALTER TABLE :scratch_schema.:persistent_pg_log_table owner to :scratch_owner;
 INSERT INTO :scratch_schema.:persistent_pg_log_table select * from :scratch_schema.:segment_extl_pg_log_table ;
 INSERT INTO :scratch_schema.:persistent_pg_log_table select * from :scratch_schema.:master_extl_pg_log_table ;

@@ -20,7 +20,7 @@
 \set master_extl_pg_log_table   pg_log_mr_master_01
 \set persistent_pg_log_table    pg_log_mr_02
 -- \set log_file                E '''' gunzip ' ' -c ' '  ${GP_SEG_DATADIR}/pg_log/gpdb-2015-11-*.csv.gz ''''
-\set log_file                   E '''' cat ' '  ${GP_SEG_DATADIR}/pg_log/gpdb-2016-01-09*.csv ''''
+\set log_file                   E '''' cat ' '  ${GP_SEG_DATADIR}/pg_log/hawq-2018-02*.csv ''''
 
 
 
@@ -31,8 +31,8 @@
 -- :min_time                    start timestamp for the range of time of interest
 -- :max_time                    end timestamp for the range of time of interest
 
-\set min_time    ''''  2016-01-09 ' ' 08:00:00 '''' '::timestamp'
-\set max_time    ''''  2016-01-09 ' ' 18:00:00 '''' '::timestamp'
+\set min_time    ''''  2018-02-01 ' ' 08:00:00 '''' '::timestamp'
+\set max_time    ''''  2016-02-31 ' ' 18:00:00 '''' '::timestamp'
 -- \set max_time current_timestamp
 
 

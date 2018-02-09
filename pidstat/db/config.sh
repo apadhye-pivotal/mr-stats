@@ -2,9 +2,9 @@
 
 CURRDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-export PGDATABASE=sar
+export PGDATABASE=pidstat
 export PGUSER=mrostron
-export PGHOST=mdw
+export PGHOST=localhost
 
 TEMPDIR=/var/tmp
 CLUSTER=local
@@ -18,11 +18,12 @@ DAYS_HIST=3                                       # number of days historical sa
 # ---------
 # sql
 # ---------
-PSQL_OPTS="-eAtq"                                 # psql additional options
+PSQL_OPTS=""                                 # psql additional options
+#PSQL_OPTS="-eAtq"                                 # psql additional options
 #-- initial (full) processing
-#INSERT_SQL=${CURRDIR}/full-ins.sql                          # copy data from load.table to target.table
-#TRUNCATE_SQL=${CURRDIR}/truncate-tgt-and-load.sql           # truncate load and/or target tables
+INSERT_SQL=${CURRDIR}/full-ins.sql                          # copy data from load.table to target.table
+TRUNCATE_SQL=${CURRDIR}/truncate-tgt-and-load.sql           # truncate load and/or target tables
 #-- incremental processing
-INSERT_SQL=${CURRDIR}/incr-ins.sql                           # copy data from load.table to target.table
-TRUNCATE_SQL=${CURRDIR}/truncate-load.sql                    # truncate load tables only
+#INSERT_SQL=${CURRDIR}/incr-ins.sql                           # copy data from load.table to target.table
+#TRUNCATE_SQL=${CURRDIR}/truncate-load.sql                    # truncate load tables only
 

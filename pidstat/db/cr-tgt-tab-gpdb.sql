@@ -1,7 +1,7 @@
 -- edit this bit
 
-\set partition_start_date   '''' 2016-05-01 ''''
-\set partition_end_date     '''' 2017-01-01 ''''
+\set partition_start_date   '''' 2018-02-01 ''''
+\set partition_end_date     '''' 2019-02-01 ''''
 \set partition_interval     '''' 1 ' ' month ''''
 \set target_schema          target
 
@@ -16,6 +16,7 @@ CREATE TABLE pidstat (
     host  text,
     ts    timestamp,
     epoch integer,
+    uid integer,
     procpid integer,
     cpu_usr numeric,
     cpu_sys numeric,
@@ -36,6 +37,4 @@ DISTRIBUTED RANDOMLY
 PARTITION BY RANGE (ts) (START (:partition_start_date) END (:partition_end_date) EVERY (INTERVAL :partition_interval))
 ;
 
-CREATE INDEX pidstat_idx_01 ON pidstat (ts)
-;
 
