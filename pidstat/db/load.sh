@@ -66,7 +66,7 @@ function load {
   typeset l_host=$( echo $l_file | awk -F/ '{print $(NF-1)}' )
   bunzip2 -c ${l_file} | awk -v "h=${l_host}" -v "c=${l_cluster}" -f ${PIDSTAT_AWK} > ${l_unzipped_file}
   psql ${PSQL_OPTS} -c "\\copy load.pidstat from '${l_unzipped_file}' with delimiter '~'"
-  #rm -f ${l_unzipped_file}
+  rm -f ${l_unzipped_file}
 }
 
 
